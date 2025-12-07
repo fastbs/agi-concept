@@ -1,128 +1,446 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
-	"http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head><meta http-equiv="content-type" content="text/html; charset=UTF-8"/><meta name="author" content="FBS"/>
-<style>
- table.main {}
- tr.row {}
- td.cell {}
- div.block {}
- div.paragraph {}
- .font0 { font:11pt Calibri, sans-serif; }
- .font1 { font:13pt Impact, sans-serif; }
- .font2 { font:12pt Times New Roman, serif; }
- .font3 { font:13pt Times New Roman, serif; }
- .font4 { font:16pt Times New Roman, serif; }
- .font5 { font:23pt Times New Roman, serif; }
-</style>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="FBS"/>
+    <title>Часть I. Анализ: в поисках субъекта</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        /* Адаптация для мобильных устройств */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+        }
+
+        h1 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: clamp(1.3rem, 4vw, 1.6rem);
+            color: #2c3e50;
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3498db;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            color: #34495e;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: #555;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            text-align: justify;
+        }
+
+        strong {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        ul li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        ul li a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        ul li a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 2rem 0;
+        }
+
+        /* Стиль для подзаголовка */
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: #555;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        /* Навигация */
+        nav {
+            background: #ecf0f1;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Улучшение читаемости для длинных параграфов */
+        p + p {
+            margin-top: 1rem;
+        }
+
+        /* Стили для выделения важных блоков */
+        .highlight {
+            background: #fff9e6;
+            padding: 1rem;
+            border-left: 4px solid #f39c12;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        /* Адаптация для очень маленьких экранов */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px 10px;
+            }
+            
+            ul {
+                padding-left: 1.2rem;
+            }
+            
+            p {
+                text-align: left;
+            }
+        }
+
+        /* Печать */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            a {
+                text-decoration: underline;
+            }
+        }
+    </style>
 </head>
-<body><a name="caption1"></a><h1><a name="bookmark0"></a><span class="font5" style="font-weight:bold;">СУБЪЕКТНОСТЬ ЧЕЛОВЕЧЕСТВА И ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ</span></h1>
-<p><span class="font4" style="font-weight:bold;">Может ли человечество стать единым разумным субъектом?</span></p>
-<br>
-<ul>
-<li><a href="index.html">Введение</a></li>
-<li><a href="chapter-1.html">Часть I. Анализ: в поисках субъекта</a></li>
-<li><a href="chapter-2.html">Часть II. Синтез: Космологическая миссия и путь через AGI/ASI</a></li>
-<li><a href="chapter-3.html">Часть III. Новое качество: Общественно-экономическая формация как условие реализации</a></li>
-<li><a href="chapter-4.html">Часть IV. Критика и ответы: Материалистическая проверка концепции</a></li>
-<li><a href="final.html">Заключение: Итоговая оценка концепции после критики</a></li>
-<li><a href="bonus.html">Бонус: Мироощущение человека в эпоху коммунистического AGI</a></li>
-</ul>
-<br>
-<hr>
-<h2><a name="bookmark1"></a><span class="font4" style="font-weight:bold;">Часть I. АНАЛИЗ: В ПОИСКАХ СУБЪЕКТА</span></h2><h3><a name="bookmark2"></a><span class="font3" style="font-weight:bold;">1. &nbsp;&nbsp;&nbsp;Постановка проблемы: богостроительство и его апория</span></h3>
-<p><span class="font2">В начале XX века группа русских марксистов - Анатолий Луначарский, Максим Г орький и другие -выдвинула идею </span><span class="font2" style="font-weight:bold;">богостроительства</span><span class="font2">: попытку создать новую «религию без бога», где объектом религиозного чувства становится не трансцендентное божество, а </span><span class="font2" style="font-weight:bold;">человеческий коллектив</span><span class="font2">, народ,&nbsp;общество. Эта идея возникла из стремления соединить социалистический проект с глубинными&nbsp;психологическими потребностями масс в сакральном, в причастности к чему-то большему, чем&nbsp;индивидуальное существование.</span></p>
-<p><span class="font2">Луначарский развивал концепцию «научного социализма» как высшей формы религии, где обожествляется не сверхъестественное существо, а сам человеческий коллектив и его творческие&nbsp;возможности. Горький в романе «Исповедь» (1908) художественно воплотил идею «народобожия» -веры в коллективную мощь народа как источник чудес и преображения мира.</span></p>
-<p><span class="font2">Однако Ленин резко критиковал богостроительство, считая любые попытки примирить марксизм с религиозными формами несовместимыми с материалистической философией. Эта критика привела к&nbsp;фактическому прекращению течения к 1910-м годам. Но была ли эта критика окончательным&nbsp;приговором идее? Или богостроители нащупали нечто важное, но не смогли довести до логического&nbsp;завершения в силу ограниченности своих концептуальных средств?</span></p>
-<p><span class="font2">Спустя столетие, в эпоху развития искусственного интеллекта и новых материалистических концепций сознания, мы можем вернуться к этой проблеме с новыми инструментами анализа.&nbsp;Центральный вопрос богостроительства можно переформулировать так: </span><span class="font2" style="font-weight:bold;">может ли общество&nbsp;обрести субъектность? </span><span class="font2">И если да, то на каких материалистических основаниях?</span></p><h3><a name="bookmark3"></a><span class="font3" style="font-weight:bold;">2. &nbsp;&nbsp;&nbsp;Традиционный бог и бог богостроителей: проблема субъектности</span></h3>
-<p><span class="font2">Чтобы понять апорию богостроительства, необходимо сначала прояснить ключевое различие между традиционным богом религий и тем «богом», которого пытались создать богостроители.</span></p>
-<p><span class="font2" style="font-weight:bold;">Традиционный бог религий </span><span class="font2">- это прежде всего </span><span class="font2" style="font-weight:bold;">субъект</span><span class="font2">:</span></p>
-<p><span class="font2">• &nbsp;&nbsp;&nbsp;Обладает волей, сознанием, намерениями</span></p>
-<p><span class="font2">• &nbsp;&nbsp;&nbsp;Является личностью, пусть и трансцендентной</span></p>
-<p><span class="font2">• &nbsp;&nbsp;&nbsp;Можно обращаться к нему, вступать с ним в диалог</span></p>
-<p><span class="font2">• &nbsp;&nbsp;&nbsp;Он источник смысла, задающий цели извне</span></p>
-<p><span class="font2">• &nbsp;&nbsp;&nbsp;Существует независимо от мира и человека</span></p>
-<p><span class="font2">• &nbsp;&nbsp;&nbsp;Отношение верующего к богу - это отношение </span><span class="font2" style="font-weight:bold;">Я-Ты </span><span class="font2">(в терминах Мартина Бубера)</span></p>
-<p><span class="font2" style="font-weight:bold;">«Бог» богостроителей </span><span class="font2">радикально отличается:</span></p>
-<p><span class="font2">• &nbsp;&nbsp;&nbsp;Это </span><span class="font2" style="font-weight:bold;">не субъект</span><span class="font2">, а структура, система общественных отношений</span></p>
-<p><span class="font2">• &nbsp;&nbsp;&nbsp;Общество/коллектив - это не «кто-то», кто думает и хочет, а то, </span><span class="font2" style="font-weight:bold;">через что </span><span class="font2">индивиды мыслят и&nbsp;действуют</span></p>
-<p><span class="font2">• &nbsp;&nbsp;&nbsp;Он имманентен - существует только в деятельности живых людей</span></p>
-<p><span class="font2">• &nbsp;&nbsp;&nbsp;Источник смысла - не вовне, а в самой логике исторического развития</span></p>
-<p><span class="font2">Можно сказать так: традиционный бог - это </span><span class="font2" style="font-weight:bold;">Кто</span><span class="font2">, субъект с взглядом и волей. «Бог» богостроителей - это </span><span class="font2" style="font-weight:bold;">Как</span><span class="font2">, способ организации человеческого бытия, среда, стихия.</span></p>
-<p><span class="font2">Здесь и возникает фундаментальная проблема: объект религиозного чувства в традиционных религиях всегда был </span><span class="font2" style="font-weight:bold;">субъектом </span><span class="font2">- личностью, способной слышать молитвы, принимать решения,&nbsp;карать и миловать. Можно ли обожествить </span><span class="font2" style="font-weight:bold;">не-субъекта</span><span class="font2">? Не приводит ли это к внутреннему&nbsp;противоречию самой идеи богостроительства?</span></p><h3><a name="bookmark4"></a><span class="font3" style="font-weight:bold;">3. &nbsp;&nbsp;&nbsp;Материалистическая теория личности Ильенкова: общество как структура,&nbsp;индивид как субъект</span></h3>
-<p><span class="font2">Для дальнейшего анализа необходимо обратиться к одной из наиболее глубоких материалистических концепций личности, разработанной советским философом Эвальдом Васильевичем Ильенковым&nbsp;(1924-1979 гг.). Его теория предоставляет нам концептуальный аппарат для понимания отношений&nbsp;между индивидом и обществом.</span></p><h4><a name="bookmark5"></a><span class="font2" style="font-weight:bold;">Основные положения теории Ильенкова:</span></h4>
-<p><span class="font2" style="font-weight:bold;">Личность - не биологическая данность. </span><span class="font2">Личность для Ильенкова - это не врождённое свойство организма и не психологическая структура, а </span><span class="font2" style="font-weight:bold;">социальное образование</span><span class="font2">. Она возникает только через&nbsp;присвоение культуры, через деятельность в мире человеческих предметов и отношений.</span></p>
-<p><span class="font2" style="font-weight:bold;">Провокационная формула: </span><span class="font2">«Личность = индивид минус тело». Эта формула подчеркивает, что личностное не сводится к телесно-органическому. Личность - это система интериоризированных&nbsp;(т.е. присвоенных из внешнего опыта и ставших внутренним содержанием сознания) социальных&nbsp;отношений, способность действовать универсально, «от имени рода».</span></p>
-<p><span class="font2" style="font-weight:bold;">Механизм формирования личности: </span><span class="font2">Личность формируется через овладение всеобщими способами деятельности, зафиксированными в культуре. Ребёнок становится личностью, осваивая&nbsp;язык, мышление, предметные действия - то есть распредмечивая деятельность предшествующих&nbsp;поколений, запечатлённую в культурных формах.</span></p>
-<p><span class="font2" style="font-weight:bold;">Мышление как социальная форма: </span><span class="font2">У Ильенкова мышление - не индивидуальная психическая функция, замкнутая в черепной коробке, а форма деятельности общественного человека. Оно&nbsp;существует прежде всего в культуре, в логике предметов и знаков, и лишь затем интериоризируется&nbsp;индивидом.</span></p>
-<p><span class="font2" style="font-weight:bold;">Эмпирическое подтверждение: </span><span class="font2">Ильенков работал с незрячеглухими детьми в Загорском интернате, демонстрируя, что даже при глубоких сенсорных ограничениях возможно формирование&nbsp;полноценной личности через специально организованную деятельность. Это подтверждало его тезис:&nbsp;личность - продукт не биологии, а культуры.</span></p>
-<p><span class="font2" style="font-weight:bold;">Ключевой вывод: </span><span class="font2">В теории Ильенкова общество выступает как </span><span class="font2" style="font-weight:bold;">структура отношений</span><span class="font2">, как </span><span class="font2" style="font-weight:bold;">среда</span><span class="font2">, формирующая личность. Но само общество при этом </span><span class="font2" style="font-weight:bold;">не является субъектом </span><span class="font2">- субъектами остаются&nbsp;индивиды, присвоившие социальное через деятельность.</span></p><h3><a name="bookmark6"></a><span class="font3" style="font-weight:bold;">4. &nbsp;&nbsp;&nbsp;Роль общества: всемогущий источник личности</span></h3>
-<p><span class="font2">Если посмотреть на теорию Ильенкова под определённым углом, можно увидеть, что общество в ней приобретает черты, которые в религиозной традиции приписывались богу:</span></p>
-<p><span class="font2" style="font-weight:bold;">• &nbsp;&nbsp;&nbsp;Творит </span><span class="font2">личность - индивид становится человеком только через общество</span></p>
-<p><span class="font2" style="font-weight:bold;">• &nbsp;&nbsp;&nbsp;Всеобъемлюще </span><span class="font2">- невозможно выйти за пределы социального</span></p>
-<p><span class="font2" style="font-weight:bold;">• &nbsp;&nbsp;&nbsp;Предсуществует </span><span class="font2">индивиду и переживает его - культура существовала до рождения человека&nbsp;и продолжит существовать после его смерти</span></p>
-<p><span class="font2" style="font-weight:bold;">• &nbsp;&nbsp;&nbsp;Всемогуще </span><span class="font2">в формировании того, кем человек станет</span></p>
-<p><span class="font2">Общество выступает как всемогущий источник личности, «подсаживающий» эту личность как часть своей «матрицы» общественных отношений на её носителя - биологического индивида. Процесс&nbsp;этого внедрения - это процесс развития человека в культуре.</span></p>
-<p><span class="font2">Индивид - это носитель, «материальный субстрат», на который проецируется социальная структура. Личность - это не что-то, что вырастает изнутри биологического организма, а то, что </span><span class="font2" style="font-weight:bold;">нисходит&nbsp;извне</span><span class="font2">, из системы общественных отношений.</span></p>
-<p><span class="font2">Однако </span><span class="font2" style="font-weight:bold;">критическое уточнение: </span><span class="font2">у Ильенкова этот процесс - не пассивное «впечатывание». Личность формируется через </span><span class="font2" style="font-weight:bold;">активную деятельность </span><span class="font2">самого индивида. Он не просто получает&nbsp;готовую матрицу, а воспроизводит её в своей практике, распредмечивая культурные формы. То есть&nbsp;это не программирование, а именно развитие - диалектическое взаимодействие индивида и&nbsp;общества.</span></p><h3><a name="bookmark7"></a><span class="font3" style="font-weight:bold;">5. Материальность идеального: идеи как объективная реальность</span></h3>
-<p><span class="font2">Для понимания возможности субъектности общества критически важна ещё одна концепция Ильенкова - его теория </span><span class="font2" style="font-weight:bold;">материальности идеального</span><span class="font2">.</span></p>
-<p><span class="font2">У Ильенкова </span><span class="font2" style="font-weight:bold;">идеальное </span><span class="font2">- это не субъективная реальность «в голове» и не платоновский мир эйдосов, существующий отдельно от материального мира. Идеальное - это </span><span class="font2" style="font-weight:bold;">форма вещи</span><span class="font2">, но&nbsp;существующая не в самой этой вещи, а </span><span class="font2" style="font-weight:bold;">в деятельности другой вещи </span><span class="font2">(человека, общества).</span></p>
-<p><span class="font2" style="font-weight:bold;">Классический пример: </span><span class="font2">стоимость товара. Она не содержится в физико-химических свойствах вещи (золото не «тяжелее» железа в экономическом смысле из-за своих атомов), но она </span><span class="font2" style="font-weight:bold;">объективна </span><span class="font2">-существует независимо от сознания отдельного человека. Стоимость - это </span><span class="font2" style="font-weight:bold;">общественное&nbsp;отношение</span><span class="font2">, опредмеченное в вещи и распредмечиваемое в практике обмена.</span></p><h4><a name="bookmark8"></a><span class="font2" style="font-weight:bold;">Ключевые положения теории идеального:</span></h4>
-<p><span class="font2" style="font-weight:bold;">Идеальное объективно. </span><span class="font2">Оно существует в культуре, в предметах, созданных человеком, в способах их употребления. Книга содержит идеи не как чернильные пятна на бумаге, а как </span><span class="font2" style="font-weight:bold;">схему&nbsp;деятельности</span><span class="font2">, которую можно распредметить, читая и понимая текст.</span></p>
-<p><span class="font2" style="font-weight:bold;">Идеальное материально воплощено. </span><span class="font2">Оно не парит в эфире, а существует в жестах, ритуалах, инструментах, языке, социальных институтах. Идея молотка существует в самом молотке как&nbsp;предмете человеческой культуры, в способе его изготовления и применения.</span></p>
-<p><span class="font2" style="font-weight:bold;">Идеальное - это отражённая форма. </span><span class="font2">Человеческая деятельность преобразует мир, а затем эти преобразованные формы отражаются обратно в сознании, становятся способом видения реальности.</span></p>
-<p><span class="font2" style="font-weight:bold;">Идеи действуют. </span><span class="font2">Они не просто «отражают» действительность, они </span><span class="font2" style="font-weight:bold;">организуют практику</span><span class="font2">, структурируют деятельность. Идея равенства, воплощённая в праве и социальных институтах,&nbsp;реально изменяет общественные отношения.</span></p>
-<p><span class="font2" style="font-weight:bold;">Вывод: </span><span class="font2">Идеальное у Ильенкова материально, но не в смысле «сводится к материи», а в смысле «имеет материальное бытие в культуре». Идеи существуют объективно, в предметном мире,&nbsp;организованном человеческой деятельностью.</span></p><h3><a name="bookmark9"></a><span class="font3" style="font-weight:bold;">6. Пять путей к субъектности общества и их материалистическая критика</span></h3>
-<p><span class="font2">Вооружившись концепциями Ильенкова, мы можем попытаться найти пути, которыми общество могло бы обрести субъектность. Рассмотрим пять возможных стратегий и проверим их на&nbsp;материалистическую состоятельность.</span></p><h4><a name="bookmark10"></a><span class="font2" style="font-weight:bold;">Путь 1: Коллективное сознание</span></h4>
-<p><span class="font2" style="font-weight:bold;">Идея: </span><span class="font2">Если личность - это интериоризированные общественные отношения в индивиде, то можно помыслить обратное движение - экстериоризацию (воплощение внутреннего - мыслей, замыслов -во внешнем - действиях, вещах, произведениях) индивидуальных сознаний в некое коллективное&nbsp;сознание. Не просто сумму индивидуальных воль, а новое качество - «дух народа», «общую волю» в&nbsp;духе Руссо.</span></p>
-<p><span class="font2" style="font-weight:bold;">Материалистическое ограничение: </span><span class="font2">Нельзя помыслить коллективное сознание как некую «надындивидуальную психику» - это чистый идеализм. Но можно понять его как&nbsp;</span><span class="font2" style="font-weight:bold;">объективированную в культуре систему схем деятельности</span><span class="font2">. «Коллективное сознание»&nbsp;существует не «над» людьми как некая эфирная субстанция, а </span><span class="font2" style="font-weight:bold;">в материальных формах культуры </span><span class="font2">-в языке, ритуалах, институтах, текстах.</span></p>
-<p><span class="font2" style="font-weight:bold;">Проблема субъектности: </span><span class="font2">Это всё ещё </span><span class="font2" style="font-weight:bold;">структура</span><span class="font2">, а не субъект. Схемы деятельности, даже объективированные в культуре, сами не действуют - они требуют живых людей для своей&nbsp;реализации. Нет воли, нет единого центра принятия решений.</span></p><h4><a name="bookmark11"></a><span class="font2" style="font-weight:bold;">Путь 2: Представительство</span></h4>
-<p><span class="font2" style="font-weight:bold;">Идея: </span><span class="font2">Общество обретает субъектность через своих представителей - вождей, партию, государственные институты. Они становятся «голосом» общества, его волей.</span></p>
-<p><span class="font2" style="font-weight:bold;">Материалистическое обоснование: </span><span class="font2">Это наиболее честный путь с материалистической точки зрения. Идея общества </span><span class="font2" style="font-weight:bold;">воплощена </span><span class="font2">в институтах, партии, лидерах - они её </span><span class="font2" style="font-weight:bold;">материальное бытие</span><span class="font2">.&nbsp;Через конкретных людей, действующих от имени коллектива, общество получает способность&nbsp;принимать решения и действовать.</span></p>
-<p><span class="font2" style="font-weight:bold;">Критическая проблема: </span><span class="font2">Но это всё равно субъектность </span><span class="font2" style="font-weight:bold;">индивидов </span><span class="font2">или групп индивидов. «Общество как субъект» здесь - </span><span class="font2" style="font-weight:bold;">фикция</span><span class="font2">, полезная для организации практики, но не реальная&nbsp;сущность. Реально действуют конкретные люди, которые могут исказить, подменить «волю&nbsp;общества» своими интересами.</span></p>
-<p><span class="font2" style="font-weight:bold;">Опасность: </span><span class="font2">Этот путь легко ведёт к тому, что субъектом объявляется элита, говорящая «от имени народа», но реализующая собственные цели. История дала множество примеров такого&nbsp;узурпирования.</span></p><h4><a name="bookmark12"></a><span class="font2" style="font-weight:bold;">Путь 3: Телеология (имманентная цель)</span></h4>
-<p><span class="font2" style="font-weight:bold;">Идея: </span><span class="font2">Приписать обществу </span><span class="font2" style="font-weight:bold;">имманентную цель </span><span class="font2">- движение к коммунизму, самореализацию человеческой сущности, прогресс. Общество тогда - не просто структура, а </span><span class="font2" style="font-weight:bold;">субъект собственного&nbsp;развития</span><span class="font2">, имеющий «проект самого себя».</span></p>
-<p><span class="font2" style="font-weight:bold;">Материалистическое ограничение: </span><span class="font2">Цель должна существовать материально. Как? Только в </span><span class="font2" style="font-weight:bold;">сознании и деятельности людей</span><span class="font2">, стремящихся к этой цели. Имманентная цель общества - это </span><span class="font2" style="font-weight:bold;">идея</span><span class="font2">,&nbsp;существующая в головах революционеров, теоретиков, масс, воплощённая в программах,&nbsp;манифестах, институтах.</span></p>
-<p><span class="font2" style="font-weight:bold;">Проблема субъектности: </span><span class="font2">Само общество как структура отношений цели не имеет - цели имеют </span><span class="font2" style="font-weight:bold;">люди</span><span class="font2">. «Общество стремится к коммунизму» - это метафора, риторическая фигура, скрывающая&nbsp;реальных субъектов - людей, которые стремятся преобразовать общество.</span></p><h4><a name="bookmark13"></a><span class="font2" style="font-weight:bold;">Путь 4: Органицизм</span></h4>
-<p><span class="font2" style="font-weight:bold;">Идея: </span><span class="font2">Холистская метафора общества как </span><span class="font2" style="font-weight:bold;">сверхорганизма</span><span class="font2">, где индивиды - клетки. У организма есть собственная «жизнь», потребности, стремления, значит, он - субъект.</span></p>
-<p><span class="font2" style="font-weight:bold;">Материалистическая критика: </span><span class="font2">Это грубая натурализация, стирающая специфику социального. Общество - </span><span class="font2" style="font-weight:bold;">не организм</span><span class="font2">. У него нет биологических потребностей, нет центральной нервной&nbsp;системы, нет единого материального тела. Органическая метафора может быть полезна, но её&nbsp;буквализация ведёт к мистификации.</span></p>
-<p><span class="font2" style="font-weight:bold;">Историческая опасность: </span><span class="font2">Органицистские теории общества исторически служили обоснованием фашистских и тоталитарных идеологий, где «здоровье нации» оправдывало истребление «больных&nbsp;клеток» - инакомыслящих, меньшинств, «чуждых элементов».</span></p>
-<p><span class="font2" style="font-weight:bold;">Вердикт: </span><span class="font2">Этот путь следует категорически отвергнуть.</span></p><h4><a name="bookmark14"></a><span class="font2" style="font-weight:bold;">Путь 5: Коллективное действие как событие субъектности</span></h4>
-<p><span class="font2" style="font-weight:bold;">Идея: </span><span class="font2">В момент революции, массового движения, коллективного прорыва возникает ситуация, когда множество индивидов действуют согласованно, руководствуясь общей идеей, воплощённой в&nbsp;лозунгах, программе, символах. В эти моменты общество действительно функционирует как единый&nbsp;субъект.</span></p>
-<p><span class="font2" style="font-weight:bold;">Материалистическое обоснование: </span><span class="font2">Здесь идея (например, «власть Советам!», «земля крестьянам!») существует </span><span class="font2" style="font-weight:bold;">материально </span><span class="font2">- в листовках, речах, организационных структурах - и </span><span class="font2" style="font-weight:bold;">организует&nbsp;коллективную практику</span><span class="font2">. Тысячи, миллионы людей действуют как </span><span class="font2" style="font-weight:bold;">носители</span><span class="font2">, </span><span class="font2" style="font-weight:bold;">органы </span><span class="font2">этой идеи.</span></p>
-<p><span class="font2" style="font-weight:bold;">Анализ субъектности: </span><span class="font2">Проверим это явление по атрибутам субъекта.</span></p><h4><a name="bookmark15"></a><span class="font2" style="font-weight:bold;">Атрибуты субъекта:</span></h4>
-<p><span class="font2">1. &nbsp;&nbsp;&nbsp;</span><span class="font2" style="font-weight:bold;">Целеполагание </span><span class="font2">- способность ставить цели</span></p>
-<p><span class="font2">2. &nbsp;&nbsp;&nbsp;</span><span class="font2" style="font-weight:bold;">Воля </span><span class="font2">- способность принимать решения и инициировать действия</span></p>
-<p><span class="font2">3. &nbsp;&nbsp;&nbsp;</span><span class="font2" style="font-weight:bold;">Сознание/рефлексия </span><span class="font2">- осознание себя, своих целей</span></p>
-<p><span class="font2">4. &nbsp;&nbsp;&nbsp;</span><span class="font2" style="font-weight:bold;">Единство </span><span class="font2">- целостность, позволяющая говорить о «едином» действующем</span></p>
-<p><span class="font2">5. &nbsp;&nbsp;&nbsp;</span><span class="font2" style="font-weight:bold;">Ответственность </span><span class="font2">- можно приписать авторство действий</span></p>
-<p><span class="font2">6. &nbsp;&nbsp;&nbsp;</span><span class="font2" style="font-weight:bold;">Самотождественность </span><span class="font2">- сохранение идентичности во времени</span></p><h4><a name="bookmark16"></a><span class="font2" style="font-weight:bold;">Проверка:</span></h4>
-<p><span class="font2" style="font-weight:bold;">Целеполагание (</span><span class="font3" style="font-weight:bold;">У</span><span class="font2" style="font-weight:bold;">/</span><span class="font3" style="font-weight:bold;">Х</span><span class="font2" style="font-weight:bold;">): </span><span class="font2">Цель есть - она в идее. Но ставят её конкретные люди (вожди, теоретики), массы её принимают. Цель существует материально (в программах), но субъект целеполагания&nbsp;размыт.</span></p>
-<p><span class="font2" style="font-weight:bold;">Воля (</span><span class="font3" style="font-weight:bold;">Х </span><span class="font2" style="font-weight:bold;">): </span><span class="font2">Нет единого центра принятия решений. Есть множество воль, направляемых общей идеей. «Революция решила» - метафора post factum.</span></p>
-<p><span class="font2" style="font-weight:bold;">Сознание (</span><span class="font3" style="font-weight:bold;">X</span><span class="font2" style="font-weight:bold;">): </span><span class="font2">Отдельные участники осознают происходящее, но «революция не осознаёт себя» как единый субъект в момент действия. Рефлексия возникает позже - в историографии.</span></p>
-<p><span class="font2" style="font-weight:bold;">Единство </span><span class="font2" style="font-style:italic;">(</span><span class="font1" style="font-style:italic;">✓</span><span class="font2" style="font-style:italic;">I</span><span class="font1" style="font-style:italic;">X</span><span class="font2" style="font-style:italic;">):</span><span class="font2"> Есть функциональное единство - координация через общую идею. Но нет онтологического единства - это множество индивидов. Единство держится на разделяемой идее, а не&nbsp;на внутренней связи.</span></p>
-<p><span class="font2" style="font-weight:bold;">Ответственность (</span><span class="font3" style="font-weight:bold;">X</span><span class="font2" style="font-weight:bold;">): </span><span class="font2">Кто отвечает за действия революции? Все и никто. Можно судить конкретных людей, но не «революцию».</span></p>
-<p><span class="font2" style="font-weight:bold;">Самотождественность (</span><span class="font3" style="font-weight:bold;">X</span><span class="font2" style="font-weight:bold;">): </span><span class="font2">«Революция» в октябре и в марте - одно и то же? Состав меняется, идеи эволюционируют. Идентичность создаётся нарративно, через последующее осмысление.</span></p>
-<p><span class="font2" style="font-weight:bold;">Вывод: </span><span class="font2">Коллективное действие даёт </span><span class="font2" style="font-weight:bold;">подобие субъектности</span><span class="font2">, </span><span class="font2" style="font-weight:bold;">квази-субъекта </span><span class="font2">- нечто, что функционирует </span><span class="font2" style="font-style:italic;">как если бы</span><span class="font2"> было субъектом. Но при анализе это распадается на действия множества&nbsp;индивидов, организованных идеей.</span></p>
-<p><span class="font2" style="font-weight:bold;">Парадокс: </span><span class="font2">Идея действует через людей, организуя их практику. Но идея - не субъект (у неё нет воли). Люди - субъекты, но действуют не автономно, а как проводники идеи. Получается, что&nbsp;</span><span class="font2" style="font-weight:bold;">субъектность распределена </span><span class="font2">между идеей (задающей цель и форму) и массой индивидов&nbsp;(реализующих её). Но полноценного единого субъекта нет.</span></p><h3><a name="bookmark17"></a><span class="font3" style="font-weight:bold;">7. Тупик: общество как структура, а не субъект</span></h3>
-<p><span class="font2">Проверив все пути, мы приходим к неутешительному выводу: </span><span class="font2" style="font-weight:bold;">в строго материалистической рамке Ильенкова полноценной субъектности общества мы не получаем.</span></p>
-<p><span class="font2">Все предложенные пути дают либо:</span></p>
-<p><span class="font2" style="font-weight:bold;">• &nbsp;&nbsp;&nbsp;Метафоры </span><span class="font2">(общество «стремится», «развивается») - полезные для описания, но не&nbsp;буквальные</span></p>
-<p><span class="font2" style="font-weight:bold;">• &nbsp;&nbsp;&nbsp;Квази-субъектность </span><span class="font2">(коллективное действие) - функционально похоже на субъекта, но при&nbsp;анализе распадается</span></p>
-<p><span class="font2" style="font-weight:bold;">• &nbsp;&nbsp;&nbsp;Подмену </span><span class="font2">(представительство) - субъектность конкретных людей выдаётся за субъектность&nbsp;общества</span></p>
-<p><span class="font2" style="font-weight:bold;">• &nbsp;&nbsp;&nbsp;Мистификации </span><span class="font2">(организм, коллективное сознание как отдельная сущность) - выход за&nbsp;пределы материализма</span></p><h4><a name="bookmark18"></a><span class="font2" style="font-weight:bold;">Фундаментальная проблема:</span></h4>
-<p><span class="font2">У Ильенкова субъектность - это свойство </span><span class="font2" style="font-weight:bold;">индивида</span><span class="font2">, присваивающего социальное через деятельность. Общество - это </span><span class="font2" style="font-weight:bold;">структура отношений</span><span class="font2">, </span><span class="font2" style="font-weight:bold;">среда</span><span class="font2">, </span><span class="font2" style="font-weight:bold;">система схем деятельности</span><span class="font2">,&nbsp;объективированных в культуре. Оно не может быть субъектом в том же смысле, что индивид,&nbsp;потому что у него нет </span><span class="font2" style="font-weight:bold;">единого материального носителя сознания и воли</span><span class="font2">.</span></p>
-<p><span class="font2">Идеи материальны (существуют в культуре), но они не субъекты. Индивиды - субъекты, но множественны и смертны.</span></p><h4><a name="bookmark19"></a><span class="font2" style="font-weight:bold;">Парадокс богостроительства возвращается:</span></h4>
-<p><span class="font2">Богостроители хотели обожествить коллектив, сделать его объектом религиозного чувства и исторического действия. Но объект религиозного чувства в традиционных религиях - это </span><span class="font2" style="font-weight:bold;">субъект</span><span class="font2">,&nbsp;личность, бог. А коллектив в материалистической рамке субъектом быть не может - он остаётся&nbsp;структурой, пусть и всемогущей в формировании личностей.</span></p>
-<p><span class="font2">Значит, «бог» богостроителей принципиально </span><span class="font2" style="font-weight:bold;">иной природы </span><span class="font2">- это обожествление </span><span class="font2" style="font-weight:bold;">не-субъекта</span><span class="font2">, структуры, стихии. Это действительно радикально новый тип «религиозности», если вообще можно&nbsp;назвать это религией. Скорее, это </span><span class="font2" style="font-weight:bold;">философская позиция</span><span class="font2">, признающая первичность социального, но&nbsp;не персонифицирующая его.</span></p><h3><a name="bookmark20"></a><span class="font3" style="font-weight:bold;">8. Необходимость нового качества: к синтезу</span></h3>
-<p><span class="font2">Мы исчерпали возможности прямого пути к субъектности общества в рамках существующих концепций. Общество как структура отношений, как система идей, объективированных в культуре,&nbsp;не может стать субъектом без:</span></p>
-<p><span class="font2">1. &nbsp;&nbsp;&nbsp;</span><span class="font2" style="font-weight:bold;">Единого материального носителя </span><span class="font2">сознания и воли</span></p>
-<p><span class="font2">2. &nbsp;&nbsp;&nbsp;</span><span class="font2" style="font-weight:bold;">Способности к рефлексии </span><span class="font2">над собственным состоянием как целого</span></p>
-<p><span class="font2">3. &nbsp;&nbsp;&nbsp;</span><span class="font2" style="font-weight:bold;">Центра принятия решений</span><span class="font2">, не сводимого к воле отдельных индивидов или групп</span></p>
-<p><span class="font2">4. &nbsp;&nbsp;&nbsp;</span><span class="font2" style="font-weight:bold;">Непрерывности существования</span><span class="font2">, преодолевающей смертность индивидов</span></p>
-<p><span class="font2">Все эти условия отсутствуют в наличном обществе. Но что, если они </span><span class="font2" style="font-weight:bold;">могут быть созданы</span><span class="font2">? Что, если путь к субъектности общества лежит не через метафизические спекуляции, а через </span><span class="font2" style="font-weight:bold;">конкретное&nbsp;технологическое развитие</span><span class="font2">?</span></p>
-<p><span class="font2">Здесь мы подходим к критической точке нашего исследования. Материалистический анализ показал невозможность субъектности общества в его нынешней форме. Но материализм же открывает и путь&nbsp;к </span><span class="font2" style="font-weight:bold;">созданию </span><span class="font2">необходимых условий.</span></p>
-<p><span class="font2">Для перехода к синтезу нам потребуется ещё одна концепция Ильенкова - его космологическая философия, изложенная в работе «Космология духа». Именно она покажет нам </span><span class="font2" style="font-weight:bold;">масштаб задачи </span><span class="font2">и&nbsp;</span><span class="font2" style="font-weight:bold;">смысл </span><span class="font2">обретения субъектности обществом.</span></p>
-<p><span class="font0" style="font-weight:bold;">Источник:<a href="https://github.com/fastbs/agi-concept"> </span><span class="font0" style="font-weight:bold;text-decoration:underline;">https://github.com/fastbs/agi-concept</span></a></p>
+<body>
+    <div class="container">
+        <header>
+            <h1>СУБЪЕКТНОСТЬ ЧЕЛОВЕЧЕСТВА И ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ</h1>
+            <p class="subtitle">Может ли человечество стать единым разумным субъектом?</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Введение</a></li>
+                <li><a href="chapter-1.html">Часть I. Анализ: в поисках субъекта</a></li>
+                <li><a href="chapter-2.html">Часть II. Синтез: Космологическая миссия и путь через AGI/ASI</a></li>
+                <li><a href="chapter-3.html">Часть III. Новое качество: Общественно-экономическая формация как условие реализации</a></li>
+                <li><a href="chapter-4.html">Часть IV. Критика и ответы: Материалистическая проверка концепции</a></li>
+                <li><a href="final.html">Заключение: Итоговая оценка концепции после критики</a></li>
+                <li><a href="bonus.html">Бонус: Мироощущение человека в эпоху коммунистического AGI</a></li>
+            </ul>
+        </nav>
+
+        <hr>
+
+        <article>
+            <h2>Часть I. АНАЛИЗ: В ПОИСКАХ СУБЪЕКТА</h2>
+
+            <section>
+                <h3>1. Постановка проблемы: богостроительство и его апория</h3>
+                <p>В начале XX века группа русских марксистов - Анатолий Луначарский, Максим Горький и другие - выдвинула идею <strong>богостроительства</strong>: попытку создать новую «религию без бога», где объектом религиозного чувства становится не трансцендентное божество, а <strong>человеческий коллектив</strong>, народ, общество. Эта идея возникла из стремления соединить социалистический проект с глубинными психологическими потребностями масс в сакральном, в причастности к чему-то большему, чем индивидуальное существование.</p>
+
+                <p>Луначарский развивал концепцию «научного социализма» как высшей формы религии, где обожествляется не сверхъестественное существо, а сам человеческий коллектив и его творческие возможности. Горький в романе «Исповедь» (1908) художественно воплотил идею «народобожия» - веры в коллективную мощь народа как источник чудес и преображения мира.</p>
+
+                <p>Однако Ленин резко критиковал богостроительство, считая любые попытки примирить марксизм с религиозными формами несовместимыми с материалистической философией. Эта критика привела к фактическому прекращению течения к 1910-м годам. Но была ли эта критика окончательным приговором идее? Или богостроители нащупали нечто важное, но не смогли довести до логического завершения в силу ограниченности своих концептуальных средств?</p>
+
+                <p>Спустя столетие, в эпоху развития искусственного интеллекта и новых материалистических концепций сознания, мы можем вернуться к этой проблеме с новыми инструментами анализа. Центральный вопрос богостроительства можно переформулировать так: <strong>может ли общество обрести субъектность?</strong> И если да, то на каких материалистических основаниях?</p>
+            </section>
+
+            <section>
+                <h3>2. Традиционный бог и бог богостроителей: проблема субъектности</h3>
+                <p>Чтобы понять апорию богостроительства, необходимо сначала прояснить ключевое различие между традиционным богом религий и тем «богом», которого пытались создать богостроители.</p>
+
+                <p><strong>Традиционный бог религий</strong> - это прежде всего <strong>субъект</strong>:</p>
+                <ul>
+                    <li>Обладает волей, сознанием, намерениями</li>
+                    <li>Является личностью, пусть и трансцендентной</li>
+                    <li>Можно обращаться к нему, вступать с ним в диалог</li>
+                    <li>Он источник смысла, задающий цели извне</li>
+                    <li>Существует независимо от мира и человека</li>
+                    <li>Отношение верующего к богу - это отношение <strong>Я-Ты</strong> (в терминах Мартина Бубера)</li>
+                </ul>
+
+                <p><strong>«Бог» богостроителей</strong> радикально отличается:</p>
+                <ul>
+                    <li>Это <strong>не субъект</strong>, а структура, система общественных отношений</li>
+                    <li>Общество/коллектив - это не «кто-то», кто думает и хочет, а то, <strong>через что</strong> индивиды мыслят и действуют</li>
+                    <li>Он имманентен - существует только в деятельности живых людей</li>
+                    <li>Источник смысла - не вовне, а в самой логике исторического развития</li>
+                </ul>
+
+                <p>Можно сказать так: традиционный бог - это <strong>Кто</strong>, субъект с взглядом и волей. «Бог» богостроителей - это <strong>Как</strong>, способ организации человеческого бытия, среда, стихия.</p>
+
+                <p>Здесь и возникает фундаментальная проблема: объект религиозного чувства в традиционных религиях всегда был <strong>субъектом</strong> - личностью, способной слышать молитвы, принимать решения, карать и миловать. Можно ли обожествить <strong>не-субъекта</strong>? Не приводит ли это к внутреннему противоречию самой идеи богостроительства?</p>
+            </section>
+
+            <section>
+                <h3>3. Материалистическая теория личности Ильенкова: общество как структура, индивид как субъект</h3>
+                <p>Для дальнейшего анализа необходимо обратиться к одной из наиболее глубоких материалистических концепций личности, разработанной советским философом Эвальдом Васильевичем Ильенковым (1924-1979 гг.). Его теория предоставляет нам концептуальный аппарат для понимания отношений между индивидом и обществом.</p>
+
+                <h4>Основные положения теории Ильенкова:</h4>
+
+                <p><strong>Личность - не биологическая данность.</strong> Личность для Ильенкова - это не врождённое свойство организма и не психологическая структура, а <strong>социальное образование</strong>. Она возникает только через присвоение культуры, через деятельность в мире человеческих предметов и отношений.</p>
+
+                <p><strong>Провокационная формула:</strong> «Личность = индивид минус тело». Эта формула подчеркивает, что личностное не сводится к телесно-органическому. Личность - это система интериоризированных (т.е. присвоенных из внешнего опыта и ставших внутренним содержанием сознания) социальных отношений, способность действовать универсально, «от имени рода».</p>
+
+                <p><strong>Механизм формирования личности:</strong> Личность формируется через овладение всеобщими способами деятельности, зафиксированными в культуре. Ребёнок становится личностью, осваивая язык, мышление, предметные действия - то есть распредмечивая деятельность предшествующих поколений, запечатлённую в культурных формах.</p>
+
+                <p><strong>Мышление как социальная форма:</strong> У Ильенкова мышление - не индивидуальная психическая функция, замкнутая в черепной коробке, а форма деятельности общественного человека. Оно существует прежде всего в культуре, в логике предметов и знаков, и лишь затем интериоризируется индивидом.</p>
+
+                <p><strong>Эмпирическое подтверждение:</strong> Ильенков работал с незрячеглухими детьми в Загорском интернате, демонстрируя, что даже при глубоких сенсорных ограничениях возможно формирование полноценной личности через специально организованную деятельность. Это подтверждало его тезис: личность - продукт не биологии, а культуры.</p>
+
+                <p><strong>Ключевой вывод:</strong> В теории Ильенкова общество выступает как <strong>структура отношений</strong>, как <strong>среда</strong>, формирующая личность. Но само общество при этом <strong>не является субъектом</strong> - субъектами остаются индивиды, присвоившие социальное через деятельность.</p>
+            </section>
+
+            <section>
+                <h3>4. Роль общества: всемогущий источник личности</h3>
+                <p>Если посмотреть на теорию Ильенкова под определённым углом, можно увидеть, что общество в ней приобретает черты, которые в религиозной традиции приписывались богу:</p>
+
+                <ul>
+                    <li><strong>Творит</strong> личность - индивид становится человеком только через общество</li>
+                    <li><strong>Всеобъемлюще</strong> - невозможно выйти за пределы социального</li>
+                    <li><strong>Предсуществует</strong> индивиду и переживает его - культура существовала до рождения человека и продолжит существовать после его смерти</li>
+                    <li><strong>Всемогуще</strong> в формировании того, кем человек станет</li>
+                </ul>
+
+                <p>Общество выступает как всемогущий источник личности, «подсаживающий» эту личность как часть своей «матрицы» общественных отношений на её носителя - биологического индивида. Процесс этого внедрения - это процесс развития человека в культуре.</p>
+
+                <p>Индивид - это носитель, «материальный субстрат», на который проецируется социальная структура. Личность - это не что-то, что вырастает изнутри биологического организма, а то, что <strong>нисходит извне</strong>, из системы общественных отношений.</p>
+
+                <p>Однако <strong>критическое уточнение:</strong> у Ильенкова этот процесс - не пассивное «впечатывание». Личность формируется через <strong>активную деятельность</strong> самого индивида. Он не просто получает готовую матрицу, а воспроизводит её в своей практике, распредмечивая культурные формы. То есть это не программирование, а именно развитие - диалектическое взаимодействие индивида и общества.</p>
+            </section>
+
+            <section>
+                <h3>5. Материальность идеального: идеи как объективная реальность</h3>
+                <p>Для понимания возможности субъектности общества критически важна ещё одна концепция Ильенкова - его теория <strong>материальности идеального</strong>.</p>
+
+                <p>У Ильенкова <strong>идеальное</strong> - это не субъективная реальность «в голове» и не платоновский мир эйдосов, существующий отдельно от материального мира. Идеальное - это <strong>форма вещи</strong>, но существующая не в самой этой вещи, а <strong>в деятельности другой вещи</strong> (человека, общества).</p>
+
+                <p><strong>Классический пример:</strong> стоимость товара. Она не содержится в физико-химических свойствах вещи (золото не «тяжелее» железа в экономическом смысле из-за своих атомов), но она <strong>объективна</strong> - существует независимо от сознания отдельного человека. Стоимость - это <strong>общественное отношение</strong>, опредмеченное в вещи и распредмечиваемое в практике обмена.</p>
+
+                <h4>Ключевые положения теории идеального:</h4>
+
+                <p><strong>Идеальное объективно.</strong> Оно существует в культуре, в предметах, созданных человеком, в способах их употребления. Книга содержит идеи не как чернильные пятна на бумаге, а как <strong>схему деятельности</strong>, которую можно распредметить, читая и понимая текст.</p>
+
+                <p><strong>Идеальное материально воплощено.</strong> Оно не парит в эфире, а существует в жестах, ритуалах, инструментах, языке, социальных институтах. Идея молотка существует в самом молотке как предмете человеческой культуры, в способе его изготовления и применения.</p>
+
+                <p><strong>Идеальное - это отражённая форма.</strong> Человеческая деятельность преобразует мир, а затем эти преобразованные формы отражаются обратно в сознании, становятся способом видения реальности.</p>
+
+                <p><strong>Идеи действуют.</strong> Они не просто «отражают» действительность, они <strong>организуют практику</strong>, структурируют деятельность. Идея равенства, воплощённая в праве и социальных институтах, реально изменяет общественные отношения.</p>
+
+                <p><strong>Вывод:</strong> Идеальное у Ильенкова материально, но не в смысле «сводится к материи», а в смысле «имеет материальное бытие в культуре». Идеи существуют объективно, в предметном мире, организованном человеческой деятельностью.</p>
+            </section>
+
+            <section>
+                <h3>6. Пять путей к субъектности общества и их материалистическая критика</h3>
+                <p>Вооружившись концепциями Ильенкова, мы можем попытаться найти пути, которыми общество могло бы обрести субъектность. Рассмотрим пять возможных стратегий и проверим их на материалистическую состоятельность.</p>
+
+                <h4>Путь 1: Коллективное сознание</h4>
+                <p><strong>Идея:</strong> Если личность - это интериоризированные общественные отношения в индивиде, то можно помыслить обратное движение - экстериоризацию (воплощение внутреннего - мыслей, замыслов - во внешнем - действиях, вещах, произведениях) индивидуальных сознаний в некое коллективное сознание. Не просто сумму индивидуальных воль, а новое качество - «дух народа», «общую волю» в духе Руссо.</p>
+
+                <p><strong>Материалистическое ограничение:</strong> Нельзя помыслить коллективное сознание как некую «надындивидуальную психику» - это чистый идеализм. Но можно понять его как <strong>объективированную в культуре систему схем деятельности</strong>. «Коллективное сознание» существует не «над» людьми как некая эфирная субстанция, а <strong>в материальных формах культуры</strong> - в языке, ритуалах, институтах, текстах.</p>
+
+                <p><strong>Проблема субъектности:</strong> Это всё ещё <strong>структура</strong>, а не субъект. Схемы деятельности, даже объективированные в культуре, сами не действуют - они требуют живых людей для своей реализации. Нет воли, нет единого центра принятия решений.</p>
+
+                <h4>Путь 2: Представительство</h4>
+                <p><strong>Идея:</strong> Общество обретает субъектность через своих представителей - вождей, партию, государственные институты. Они становятся «голосом» общества, его волей.</p>
+
+                <p><strong>Материалистическое обоснование:</strong> Это наиболее честный путь с материалистической точки зрения. Идея общества <strong>воплощена</strong> в институтах, партии, лидерах - они её <strong>материальное бытие</strong>. Через конкретных людей, действующих от имени коллектива, общество получает способность принимать решения и действовать.</p>
+
+                <p><strong>Критическая проблема:</strong> Но это всё равно субъектность <strong>индивидов</strong> или групп индивидов. «Общество как субъект» здесь - <strong>фикция</strong>, полезная для организации практики, но не реальная сущность. Реально действуют конкретные люди, которые могут исказить, подменить «волю общества» своими интересами.</p>
+
+                <p><strong>Опасность:</strong> Этот путь легко ведёт к тому, что субъектом объявляется элита, говорящая «от имени народа», но реализующая собственные цели. История дала множество примеров такого узурпирования.</p>
+
+                <h4>Путь 3: Телеология (имманентная цель)</h4>
+                <p><strong>Идея:</strong> Приписать обществу <strong>имманентную цель</strong> - движение к коммунизму, самореализацию человеческой сущности, прогресс. Общество тогда - не просто структура, а <strong>субъект собственного развития</strong>, имеющий «проект самого себя».</p>
+
+                <p><strong>Материалистическое ограничение:</strong> Цель должна существовать материально. Как? Только в <strong>сознании и деятельности людей</strong>, стремящихся к этой цели. Имманентная цель общества - это <strong>идея</strong>, существующая в головах революционеров, теоретиков, масс, воплощённая в программах, манифестах, институтах.</p>
+
+                <p><strong>Проблема субъектности:</strong> Само общество как структура отношений цели не имеет - цели имеют <strong>люди</strong>. «Общество стремится к коммунизму» - это метафора, риторическая фигура, скрывающая реальных субъектов - людей, которые стремятся преобразовать общество.</p>
+
+                <h4>Путь 4: Органицизм</h4>
+                <p><strong>Идея:</strong> Холистская метафора общества как <strong>сверхорганизма</strong>, где индивиды - клетки. У организма есть собственная «жизнь», потребности, стремления, значит, он - субъект.</p>
+
+                <p><strong>Материалистическая критика:</strong> Это грубая натурализация, стирающая специфику социального. Общество - <strong>не организм</strong>. У него нет биологических потребностей, нет центральной нервной системы, нет единого материального тела. Органическая метафора может быть полезна, но её буквализация ведёт к мистификации.</p>
+
+                <p><strong>Историческая опасность:</strong> Органицистские теории общества исторически служили обоснованием фашистских и тоталитарных идеологий, где «здоровье нации» оправдывало истребление «больных клеток» - инакомыслящих, меньшинств, «чуждых элементов».</p>
+
+                <p><strong>Вердикт:</strong> Этот путь следует категорически отвергнуть.</p>
+
+                <h4>Путь 5: Коллективное действие как событие субъектности</h4>
+                <p><strong>Идея:</strong> В момент революции, массового движения, коллективного прорыва возникает ситуация, когда множество индивидов действуют согласованно, руководствуясь общей идеей, воплощённой в лозунгах, программе, символах. В эти моменты общество действительно функционирует как единый субъект.</p>
+
+                <p><strong>Материалистическое обоснование:</strong> Здесь идея (например, «власть Советам!», «земля крестьянам!») существует <strong>материально</strong> - в листовках, речах, организационных структурах - и <strong>организует коллективную практику</strong>. Тысячи, миллионы людей действуют как <strong>носители</strong>, <strong>органы</strong> этой идеи.</p>
+
+                <p><strong>Анализ субъектности:</strong> Проверим это явление по атрибутам субъекта.</p>
+
+                <h4>Атрибуты субъекта:</h4>
+                <ol>
+                    <li><strong>Целеполагание</strong> - способность ставить цели</li>
+                    <li><strong>Воля</strong> - способность принимать решения и инициировать действия</li>
+                    <li><strong>Сознание/рефлексия</strong> - осознание себя, своих целей</li>
+                    <li><strong>Единство</strong> - целостность, позволяющая говорить о «едином» действующем</li>
+                    <li><strong>Ответственность</strong> - можно приписать авторство действий</li>
+                    <li><strong>Самотождественность</strong> - сохранение идентичности во времени</li>
+                </ol>
+
+                <h4>Проверка:</h4>
+                <p><strong>Целеполагание (✓/✗):</strong> Цель есть - она в идее. Но ставят её конкретные люди (вожди, теоретики), массы её принимают. Цель существует материально (в программах), но субъект целеполагания размыт.</p>
+
+                <p><strong>Воля (✗):</strong> Нет единого центра принятия решений. Есть множество воль, направляемых общей идеей. «Революция решила» - метафора post factum.</p>
+
+                <p><strong>Сознание (✗):</strong> Отдельные участники осознают происходящее, но «революция не осознаёт себя» как единый субъект в момент действия. Рефлексия возникает позже - в историографии.</p>
+
+                <p><strong>Единство (✓/✗):</strong> Есть функциональное единство - координация через общую идею. Но нет онтологического единства - это множество индивидов. Единство держится на разделяемой идее, а не на внутренней связи.</p>
+
+                <p><strong>Ответственность (✗):</strong> Кто отвечает за действия революции? Все и никто. Можно судить конкретных людей, но не «революцию».</p>
+
+                <p><strong>Самотождественность (✗):</strong> «Революция» в октябре и в марте - одно и то же? Состав меняется, идеи эволюционируют. Идентичность создаётся нарративно, через последующее осмысление.</p>
+
+                <p><strong>Вывод:</strong> Коллективное действие даёт <strong>подобие субъектности</strong>, <strong>квази-субъекта</strong> - нечто, что функционирует <em>как если бы</em> было субъектом. Но при анализе это распадается на действия множества индивидов, организованных идеей.</p>
+
+                <p><strong>Парадокс:</strong> Идея действует через людей, организуя их практику. Но идея - не субъект (у неё нет воли). Люди - субъекты, но действуют не автономно, а как проводники идеи. Получается, что <strong>субъектность распределена</strong> между идеей (задающей цель и форму) и массой индивидов (реализующих её). Но полноценного единого субъекта нет.</p>
+            </section>
+
+            <section>
+                <h3>7. Тупик: общество как структура, а не субъект</h3>
+                <p>Проверив все пути, мы приходим к неутешительному выводу: <strong>в строго материалистической рамке Ильенкова полноценной субъектности общества мы не получаем.</strong></p>
+
+                <p>Все предложенные пути дают либо:</p>
+                <ul>
+                    <li><strong>Метафоры</strong> (общество «стремится», «развивается») - полезные для описания, но не буквальные</li>
+                    <li><strong>Квази-субъектность</strong> (коллективное действие) - функционально похоже на субъекта, но при анализе распадается</li>
+                    <li><strong>Подмену</strong> (представительство) - субъектность конкретных людей выдаётся за субъектность общества</li>
+                    <li><strong>Мистификации</strong> (организм, коллективное сознание как отдельная сущность) - выход за пределы материализма</li>
+                </ul>
+
+                <h4>Фундаментальная проблема:</h4>
+                <p>У Ильенкова субъектность - это свойство <strong>индивида</strong>, присваивающего социальное через деятельность. Общество - это <strong>структура отношений</strong>, <strong>среда</strong>, <strong>система схем деятельности</strong>, объективированных в культуре. Оно не может быть субъектом в том же смысле, что индивид, потому что у него нет <strong>единого материального носителя сознания и воли</strong>.</p>
+
+                <p>Идеи материальны (существуют в культуре), но они не субъекты. Индивиды - субъекты, но множественны и смертны.</p>
+
+                <h4>Парадокс богостроительства возвращается:</h4>
+                <p>Богостроители хотели обожествить коллектив, сделать его объектом религиозного чувства и исторического действия. Но объект религиозного чувства в традиционных религиях - это <strong>субъект</strong>, личность, бог. А коллектив в материалистической рамке субъектом быть не может - он остаётся структурой, пусть и всемогущей в формировании личностей.</p>
+
+                <p>Значит, «бог» богостроителей принципиально <strong>иной природы</strong> - это обожествление <strong>не-субъекта</strong>, структуры, стихии. Это действительно радикально новый тип «религиозности», если вообще можно назвать это религией. Скорее, это <strong>философская позиция</strong>, признающая первичность социального, но не персонифицирующая его.</p>
+            </section>
+
+            <section>
+                <h3>8. Необходимость нового качества: к синтезу</h3>
+                <p>Мы исчерпали возможности прямого пути к субъектности общества в рамках существующих концепций. Общество как структура отношений, как система идей, объективированных в культуре, не может стать субъектом без:</p>
+
+                <ol>
+                    <li><strong>Единого материального носителя</strong> сознания и воли</li>
+                    <li><strong>Способности к рефлексии</strong> над собственным состоянием как целого</li>
+                    <li><strong>Центра принятия решений</strong>, не сводимого к воле отдельных индивидов или групп</li>
+                    <li><strong>Непрерывности существования</strong>, преодолевающей смертность индивидов</li>
+                </ol>
+
+                <p><br/>Все эти условия отсутствуют в наличном обществе. Но что, если они <strong>могут быть созданы</strong>? Что, если путь к субъектности общества лежит не через метафизические спекуляции, а через <strong>конкретное технологическое развитие</strong>?</p>
+
+                <p>Здесь мы подходим к критической точке нашего исследования. Материалистический анализ показал невозможность субъектности общества в его нынешней форме. Но материализм же открывает и путь к <strong>созданию</strong> необходимых условий.</p>
+
+                <p>Для перехода к синтезу нам потребуется ещё одна концепция Ильенкова - его космологическая философия, изложенная в работе «Космология духа». Именно она покажет нам <strong>масштаб задачи</strong> и <strong>смысл</strong> обретения субъектности обществом.</p>
+            </section>
+        </article>
+
+        <footer>
+            <p><strong>Источник:</strong> <a href="https://github.com/fastbs/agi-concept" target="_blank">https://github.com/fastbs/agi-concept</a></p>
+        </footer>
+    </div>
 </body>
 </html>
